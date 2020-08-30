@@ -20,11 +20,11 @@ where `<m>` is the measurement to record (set to `"requests"`, `"cookies"`, or `
 
 ### Third-party HTTP(S) requests
 
-#### Distribution of third-party HTTP(S) requests
+#### Distribution of websites with third-party HTTP(S) requests
 
 ![Distribution Requests](histogram_requests.png)
 
-#### Top 10 domains with third-party HTTP(S) requests
+#### Top 10 third-party domains with HTTP(S) requests
 
 |     | Domain (vanilla)      | Quantity (vanilla) |     | Domain (ublock)       | Quantity (ublock) |
 | --: | :-------------------- | -----------------: | --- | :-------------------- | ----------------: |
@@ -41,11 +41,11 @@ where `<m>` is the measurement to record (set to `"requests"`, `"cookies"`, or `
 
 ### Third-party cookies
 
-#### Distribution of third-party cookies
+#### Distribution of websites with third-party cookies
 
 ![Distribution Cookies](histogram_cookies.png)
 
-#### Top 10 domains with third-party cookies
+#### Top 10 third-party domains with cookies
 
 |     | Domain (vanilla)   | Quantity (vanilla) |     | Domain (ublock) | Quantity (ublock) |
 | --: | :----------------- | -----------------: | --- | :-------------- | ----------------: |
@@ -62,11 +62,11 @@ where `<m>` is the measurement to record (set to `"requests"`, `"cookies"`, or `
 
 ### Third-party JavaScript API calls
 
-#### Distribution of third-party JavaScript API calls
+#### Distribution of websites with third-party JavaScript API calls
 
 ![Distribution Cookies](histogram_javascript.png)
 
-#### Top 10 domains with third-party JavaScript API calls
+#### Top 10 third-party domains with JavaScript API calls
 
 |     | Domain (vanilla)     | Quantity (vanilla) |     | Domain (ublock) | Quantity (ublock) |
 | --: | :------------------- | -----------------: | --- | :-------------- | ----------------: |

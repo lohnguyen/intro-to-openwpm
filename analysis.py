@@ -10,9 +10,9 @@ from collections import Counter
 
 MODE_UBLOCK = "(ublock mode)"
 MODE_VANILLA = "(vanilla mode)"
-TITLE_REQUESTS = "third-party HTTP(S) requests"
-TITLE_COOKIES = "third-party cookies"
-TITLE_JAVASCRIPT = "third-party JavaScript API calls"
+TITLE_REQUESTS = "websites with third-party HTTP(S) requests"
+TITLE_COOKIES = "websites with third-party cookies"
+TITLE_JAVASCRIPT = "websites with third-party JavaScript API calls"
 
 DB_VANILLA = "./db/vanilla/crawl-data.sqlite"
 DB_UBLOCK = "./db/ublock/crawl-data.sqlite"
@@ -51,9 +51,9 @@ def is_third_party(domain, url):
     return True
 
 
-def show_top_10(vanilla_counter, ublock_counter, title):
-    vanilla_top_10 = vanilla_counter.most_common(10)
-    ublock_top_10 = ublock_counter.most_common(10)
+def show_top_10(vanilla_third_parties, ublock_third_parties, title):
+    vanilla_top_10 = Counter(vanilla_third_parties).most_common(10)
+    ublock_top_10 = Counter(ublock_third_parties).most_common(10)
     indexes = []
     vanilla_domains = []
     ublock_domains = []
@@ -71,11 +71,11 @@ def show_top_10(vanilla_counter, ublock_counter, title):
                        "Quantity (vanilla)": vanilla_quantities,
                        "Domain (ublock)": ublock_domains,
                        "Quantity (ublock)": ublock_quantities}, index=indexes)
-    print("\n       {} {}\n".format('Top 10', title))
+    print("\n")
     print(df.to_markdown(), '\n')
 
 
-def count_third_parties(third_parties, rows):
+def count_third_parties(websites, third_parties, rows):
     for row in rows:
         visit_id = row[0] - 1
         url = row[1]
@@ -84,21 +84,28 @@ def count_third_parties(third_parties, rows):
 
         if is_third_party(sites[visit_id], url):
             third_parties.append(url)
+            websites.append(sites[visit_id])
 
 
-def plot_histograms(vanilla_counter, ublock_counter, title, measurement):
-    y_vanilla = list(vanilla_counter.values())
-    y_ublock = list(ublock_counter.values())
+def plot_histograms(vanilla_websites, ublock_websites, title, measurement):
+    vanilla_quatities = list(Counter(vanilla_websites).values())
+    ublock_quantities = list(Counter(ublock_websites).values())
+    y_vanilla = [0] * 100
+    y_ublock = [0] * 100
+    y_vanilla[0:len(vanilla_quatities)] = vanilla_quatities
+    y_ublock[0:len(ublock_quantities)] = ublock_quantities
+    target = measurement
 
-    if measurement == "javascript":
-        measurement = "JavaScript API calls"
+    if target == "javascript":
+        target = "JavaScript API calls"
 
-    plt.hist([y_vanilla, y_ublock], bins="auto", alpha=.5,
+    plt.hist([y_vanilla, y_ublock], bins="auto", alpha=.5, color=["red", "blue"],
              label=["vanilla mode", "ublock mode"])
     plt.title("Distribution of " + title)
-    plt.xlabel("Number of " + measurement)
-    plt.ylabel("Number of third-party domains")
+    plt.xlabel("Number of " + target)
+    plt.ylabel("Number of " + title)
     plt.legend()
+    plt.savefig('histogram_{}.png'.format(measurement), dpi=300)
     plt.show()
 
 
@@ -110,7 +117,7 @@ def get_rows(measurement):
     elif measurement == "javascript":
         return query_from_db(QUERY_JAVASCRIPT, DB_VANILLA), query_from_db(QUERY_JAVASCRIPT, DB_UBLOCK)
     else:
-        exit()
+        raise Exception('Invalid argument - ' + measurement)
 
 
 def get_title(measurement):
@@ -126,15 +133,14 @@ if __name__ == "__main__":
     measurement = sys.argv[1]
     vanilla_rows, ublock_rows = get_rows(measurement)
     sites = get_sites_from_csv()
+    vanilla_websites = []
+    ublock_websites = []
     vanilla_third_parties = []
     ublock_third_parties = []
 
-    count_third_parties(vanilla_third_parties, vanilla_rows)
-    count_third_parties(ublock_third_parties, ublock_rows)
-
-    vanilla_counter = Counter(vanilla_third_parties)
-    ublock_counter = Counter(ublock_third_parties)
+    count_third_parties(vanilla_websites, vanilla_third_parties, vanilla_rows)
+    count_third_parties(ublock_websites, ublock_third_parties, ublock_rows)
 
     title = get_title(measurement)
-    show_top_10(vanilla_counter, ublock_counter, title)
-    plot_histograms(vanilla_counter, ublock_counter, title, measurement)
+    show_top_10(vanilla_third_parties, ublock_third_parties, title)
+    plot_histograms(vanilla_websites, ublock_websites, title, measurement)
