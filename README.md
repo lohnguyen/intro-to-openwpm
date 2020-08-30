@@ -14,11 +14,17 @@ python3 crawler.py
 python3 analysis.py <m>
 ```
 
-where `<m>` is the measurement to record (`"requests"`, `"cookies"`, or `"javascript"`).
+where `<m>` is the measurement to record (set to `"requests"`, `"cookies"`, or `"api"`).
 
 ## Analysis
 
-### Top 10-third-party HTTP(S) requests
+### Third-party HTTP(S) requests
+
+#### Distributions
+
+![Distribution Requests](historgram_requests.png)
+
+#### Top 10 third-party HTTP(S) requests
 
 |     | Domain (vanilla)      | Quantity (vanilla) |     | Domain (ublock)       | Quantity (ublock) |
 | --: | :-------------------- | -----------------: | --- | :-------------------- | ----------------: |
