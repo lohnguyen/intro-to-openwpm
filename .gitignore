@@ -1,0 +1,9 @@
+.vscode
+.DS_Store
+
+db/
+db_ublock/
+db_vanilla/
+openwpm/
+
+top-1m.csv
