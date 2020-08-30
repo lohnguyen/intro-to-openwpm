@@ -1,6 +1,20 @@
 # Intro To OpenWPM
 
-## To run
+> **_NOTE:_** `top-1m.csv` must start with `index,domain` for the crawler and analysis to work.
+
+## Run the crawler
+
+```python3
+python3 crawler.py
+```
+
+## Run the analysis
+
+```python3
+python3 analysis.py <m>
+```
+
+where `<m>` is the measurement to record (`"requests"`, `"cookies"`, or `"javascript"`).
 
 ## Analysis
 
