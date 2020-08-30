@@ -20,11 +20,11 @@ where `<m>` is the measurement to record (set to `"requests"`, `"cookies"`, or `
 
 ### Third-party HTTP(S) requests
 
-#### Distributions
+#### Distribution of third-party HTTP(S) requests
 
-![Distribution Requests](historgram_requests.png)
+![Distribution Requests](histogram_requests.png)
 
-#### Top 10 third-party HTTP(S) requests
+#### Top 10 domains with third-party HTTP(S) requests
 
 |     | Domain (vanilla)      | Quantity (vanilla) |     | Domain (ublock)       | Quantity (ublock) |
 | --: | :-------------------- | -----------------: | --- | :-------------------- | ----------------: |
@@ -39,7 +39,13 @@ where `<m>` is the measurement to record (set to `"requests"`, `"cookies"`, or `
 |   9 | pinimg.com            |                200 |     | awsstatic.com         |               149 |
 |  10 | akamaized.net         |                182 |     | twimg.com             |               118 |
 
-### Top 10 third-party cookies
+### Third-party cookies
+
+#### Distribution of third-party cookies
+
+![Distribution Cookies](histogram_cookies.png)
+
+#### Top 10 domains with third-party cookies
 
 |     | Domain (vanilla)   | Quantity (vanilla) |     | Domain (ublock) | Quantity (ublock) |
 | --: | :----------------- | -----------------: | --- | :-------------- | ----------------: |
@@ -54,7 +60,13 @@ where `<m>` is the measurement to record (set to `"requests"`, `"cookies"`, or `
 |   9 | linkedin.com       |                 94 |     | live.com        |                14 |
 |  10 | adnxs.com          |                 68 |     | taboola.com     |                13 |
 
-### Top 10 third-party JavaScript API calls
+### Third-party JavaScript API calls
+
+#### Distribution of third-party JavaScript API calls
+
+![Distribution Cookies](histogram_javascript.png)
+
+#### Top 10 domains with third-party JavaScript API calls
 
 |     | Domain (vanilla)     | Quantity (vanilla) |     | Domain (ublock) | Quantity (ublock) |
 | --: | :------------------- | -----------------: | --- | :-------------- | ----------------: |
