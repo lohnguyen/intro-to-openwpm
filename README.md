@@ -6,6 +6,12 @@ The list of the websites is taken from Tranco (https://tranco-list.eu/download_d
 
 > **_NOTE:_** top-1m.csv must start with `index,domain` for the csv reading to work properly.
 
+## Activate virtual environment
+
+```python3
+conda activate openwpm
+```
+
 ## Run the crawler
 
 ```python3
