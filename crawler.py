@@ -24,7 +24,7 @@ for i in range(NUM_BROWSERS):
     browser_params[i]['cookie_instrument'] = True
     # Record JS Web API calls
     browser_params[i]['js_instrument'] = True
-    # Turn on UBlock
+    # Turn on uBlock Origin
     browser_params[i]['ublock-origin'] = True
     # Launch browsers headless
     browser_params[i]['display_mode'] = 'headless'

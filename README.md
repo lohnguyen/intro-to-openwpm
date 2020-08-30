@@ -1,6 +1,6 @@
 # Intro To OpenWPM
 
-A brief introduction to web-crawling with OpenWPM. The top 100 websites are visited via Firefox (one browser) and recorded in both "vanilla mode" and "ad blocking mode" (using uBlock Origin extension). 
+A brief introduction to web-crawling with OpenWPM. The top 100 websites are visited via Firefox (one browser) and recorded in both "vanilla mode" and "ad blocking mode" (using uBlock Origin extension).
 
 The list of the websites is taken from Tranco (https://tranco-list.eu/download_daily/56JN) and should be located in the project's root directory. The tool OpenWPM is taken from Mozilla (https://github.com/mozilla/OpenWPM) and should be located in the project's root directory as `openwpm`.
 
