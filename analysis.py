@@ -90,6 +90,9 @@ def plot_histograms(vanilla_counter, ublock_counter, title, measurement):
     y_vanilla = list(vanilla_counter.values())
     y_ublock = list(ublock_counter.values())
 
+    if measurement == "javascript":
+        measurement = "JavaScript API calls"
+
     plt.hist([y_vanilla, y_ublock], bins="auto", alpha=.5,
              label=["vanilla mode", "ublock mode"])
     plt.title("Distribution of " + title)
