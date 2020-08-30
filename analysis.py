@@ -25,7 +25,7 @@ QUERY_JAVASCRIPT = "SELECT visit_id, script_url FROM javascript"
 
 def get_sites_from_csv():
     data = pd.read_csv(PATH_CSV)
-    return data.iloc[:99, 1].values
+    return data.iloc[:100, 1].values
 
 
 def query_from_db(query, db_path):
