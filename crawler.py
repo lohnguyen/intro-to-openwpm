@@ -7,10 +7,8 @@ PATH_CSV = './top-1m.csv'
 NUM_BROWSERS = 1
 
 # The list of sites that we wish to crawl
-
 data = pd.read_csv(PATH_CSV)
-# sites = data.iloc[0:9, 1].values
-sites = data.iloc[0:99, 1].values
+sites = data.iloc[0:100, 1].values
 
 # Loads the default manager params
 # and NUM_BROWSERS copies of the default browser params
