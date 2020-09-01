@@ -7,8 +7,10 @@ DB_UBLOCK = './db/ublock'
 PATH_CSV = './top-1m.csv'
 NUM_BROWSERS = 1
 
-# The list of sites that we wish to crawl
 num_sites = sys.argv[1]
+mode = sys.argv[2]
+
+# The list of sites that we wish to crawl
 data = pd.read_csv(PATH_CSV)
 sites = data.iloc[:num_sites, 1].values
 
@@ -27,8 +29,11 @@ for i in range(NUM_BROWSERS):
     # Launch browsers headless
     browser_params[i]['display_mode'] = 'headless'
 
+    if mode == "ublock":
+        # Turn on uBlock Origin
+        browser_params[i]['ublock-origin'] = True
+
 # Update TaskManager configuration (use this for crawl-wide settings)
-mode = sys.argv[2]
 db_path = DB_VANILLA if mode == "vanilla" else DB_UBLOCK
 manager_params['data_directory'] = db_path
 manager_params['log_directory'] = db_path
