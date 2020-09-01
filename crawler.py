@@ -1,3 +1,4 @@
+import sys
 import pandas as pd
 from openwpm.automation import CommandSequence, TaskManager
 
@@ -7,8 +8,9 @@ PATH_CSV = './top-1m.csv'
 NUM_BROWSERS = 1
 
 # The list of sites that we wish to crawl
+num_sites = sys.argv[1]
 data = pd.read_csv(PATH_CSV)
-sites = data.iloc[0:100, 1].values
+sites = data.iloc[:num_sites, 1].values
 
 # Loads the default manager params
 # and NUM_BROWSERS copies of the default browser params
@@ -22,14 +24,14 @@ for i in range(NUM_BROWSERS):
     browser_params[i]['cookie_instrument'] = True
     # Record JS Web API calls
     browser_params[i]['js_instrument'] = True
-    # Turn on uBlock Origin
-    browser_params[i]['ublock-origin'] = True
     # Launch browsers headless
     browser_params[i]['display_mode'] = 'headless'
 
 # Update TaskManager configuration (use this for crawl-wide settings)
-manager_params['data_directory'] = DB_UBLOCK
-manager_params['log_directory'] = DB_UBLOCK
+mode = sys.argv[2]
+db_path = DB_VANILLA if mode == "vanilla" else DB_UBLOCK
+manager_params['data_directory'] = db_path
+manager_params['log_directory'] = db_path
 
 # Instantiates the measurement platform
 # Commands time out by default after 60 seconds
